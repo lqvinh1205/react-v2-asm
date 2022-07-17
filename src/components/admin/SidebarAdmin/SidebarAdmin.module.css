@@ -1,0 +1,28 @@
+.sidebar_ad {
+  padding: 20px;
+  padding-left: 0;
+}
+.sidebar_ad ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar_ad li {
+  padding: 10px;
+  color: #000;
+  display: flex;
+  gap: 5px;
+  font-weight: 500;
+}
+.sidebar_ad li img{
+  filter: brightness(0%);
+}
+.sidebar_ad li:hover {
+  background: #00b0d7;
+  border-radius: 5px;
+  color: #ffff;
+}
+
+.sidebar_ad li:hover img{
+  filter: brightness(100%);
+}

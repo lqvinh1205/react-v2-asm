@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/client/Home";
+import "antd/dist/antd.min.css"; // or 'antd/dist/antd.less'
+import AdminLayout from "./layout/AdminLayout";
+import Products from "./pages/admin/Products";
+import FormProduct from "./pages/admin/Products/Form";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/">
+        <Route index element={<Home />} />
+      </Route>
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route path="products" element={<Products />} />
+        <Route path="products/add" element={<FormProduct />} />
+      </Route>
+    </Routes>
   );
 }
 

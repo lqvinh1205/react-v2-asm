@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.header {
+  width: 100%;
+  background: #00b0d7;
+}
+.main {
+  width: 100%;
+}
+.sidebar {
+  width: 25%;
+  padding-right: 30px;
+  /* background: rgba(36, 2, 2, 0.061); */
+  min-height: calc(100vh - 65px);
+}
+.content {
+  width: 75%;
+  padding: 30px;
+  padding-right: 0;
+  background: linear-gradient(to right, #e5e5e5, #ffffff 30%);
+}
