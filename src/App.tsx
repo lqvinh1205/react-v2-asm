@@ -16,6 +16,7 @@ function App() {
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="products" element={<Products />} />
         <Route path="products/add" element={<FormProduct />} />
+        <Route path="products/:id/edit" element={<FormProduct />} />
       </Route>
     </Routes>
   );

@@ -4,9 +4,9 @@ import {
   Input,
   InputNumber,
   message,
+  Modal,
   Select,
   Spin,
-  Upload,
 } from "antd";
 
 import React, { useEffect, useState } from "react";
@@ -14,14 +14,18 @@ import styles from "./Form.module.css";
 import addIcon from "../../../../assets/addIcon.svg";
 import InputCustom from "../../../../components/admin/InputCustom";
 import axios from "axios";
-import { create } from "../../../../api/products";
+import { create, read, update } from "../../../../api/products";
+import { useNavigate, useParams } from "react-router-dom";
 type Props = {};
 
 const FormProduct = (props: Props) => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
   const [caterory, setCategory] = useState([]);
+  const [product, setProduct] = useState<any>({});
   const handleChangeImage = (e: any) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -30,13 +34,31 @@ const FormProduct = (props: Props) => {
       uploadImage(reader.result as string);
     };
   };
-  const onFinish = async (value: any) => {
-    if (imageUrl) {
-      // await create({ ...value, images: imageUrl });
-      console.log({ ...value, images: imageUrl });
-    } else {
-      message.error("Please await images !!");
-    }
+  const onFinish = (value: any) => {
+    Modal.confirm({
+      content: "Bạn có chắc muốn thêm",
+      onOk: async () => {
+        if (id) {
+          if ((!imageUrl && loading) || loading) {
+            message.error("Please await images !!");
+          } else {
+            await update({ ...value, images: imageUrl, id: product.id });
+            message.success("Cập nhật thành công");
+
+            navigate("/admin/products");
+          }
+        } else {
+          if (imageUrl && !loading) {
+            await create({ ...value, images: imageUrl });
+            message.success("Thêm thành công");
+
+            navigate("/admin/products");
+          } else {
+            message.error("Please await images !!");
+          }
+        }
+      },
+    });
   };
   const uploadImage = async (base64Image: string) => {
     try {
@@ -57,6 +79,14 @@ const FormProduct = (props: Props) => {
       setCategory(data);
     };
     fetchCate();
+    if (id) {
+      const fetchProduct = async () => {
+        const { data } = await read(id);
+        setProduct(data);
+        form.setFieldsValue(data);
+      };
+      fetchProduct();
+    }
   }, []);
   return (
     <div>
@@ -89,8 +119,12 @@ const FormProduct = (props: Props) => {
                     accept="image/jpg,image/png,image/jpg"
                     defaultValue={imageUrl}
                   />
-                  {imageUrl || loading ? (
-                    <img src={imageUrl} alt="" className={styles.img_prev} />
+                  {product.images || imageUrl || loading ? (
+                    <img
+                      src={imageUrl || product.images}
+                      alt=""
+                      className={styles.img_prev}
+                    />
                   ) : (
                     <>
                       <img src={addIcon} alt="" />
@@ -195,7 +229,7 @@ const FormProduct = (props: Props) => {
               </Form.Item>
               <div>
                 <Button type="primary" htmlType="submit">
-                  Thêm mới
+                  {id ? "Cập nhât" : "Thêm mới"}
                 </Button>
               </div>
             </div>

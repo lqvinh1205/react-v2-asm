@@ -40,6 +40,9 @@ const Products = (props: Props) => {
   const checked = (e: boolean) => {
     console.log(e);
   };
+  const removeProduct = async (id: any) => {
+    console.log(id);
+  };
   const columns = [
     {
       title: "#",
@@ -91,8 +94,16 @@ const Products = (props: Props) => {
     {
       title: "Action",
       width: "15%",
-      key: "idasa",
-      render: () => <span>Delete</span>,
+      dataIndex: "id",
+      key: "id",
+      render: (id: any) => (
+        <>
+          <Link to={`${id}/edit`}>
+            <button>Edit</button>
+          </Link>
+          <button onClick={removeProduct}>Delete</button>
+        </>
+      ),
     },
   ];
   return (
