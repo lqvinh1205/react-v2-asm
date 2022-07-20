@@ -1,48 +1,27 @@
 import {
-  LoadingOutlined,
-  PlusOutlined,
-  ReadFilled,
-  UploadOutlined,
-} from "@ant-design/icons";
-import { Button, Form, Input, InputNumber, message, Select, Spin, Upload } from "antd";
-import {
-  RcFile,
-  UploadChangeParam,
-  UploadFile,
-  UploadProps,
-} from "antd/lib/upload";
-import React, { useState } from "react";
+  Button,
+  Form,
+  Input,
+  InputNumber,
+  message,
+  Select,
+  Spin,
+  Upload,
+} from "antd";
+
+import React, { useEffect, useState } from "react";
 import styles from "./Form.module.css";
 import addIcon from "../../../../assets/addIcon.svg";
-import TextArea from "antd/lib/input/TextArea";
 import InputCustom from "../../../../components/admin/InputCustom";
 import axios from "axios";
 import { create } from "../../../../api/products";
-import { setFlagsFromString } from "v8";
 type Props = {};
-
-const getBase64 = (img: RcFile, callback: (url: string) => void) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result as string));
-  reader.readAsDataURL(img);
-};
-const beforeUpload = (file: RcFile) => {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-  if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
-  }
-  return isJpgOrPng && isLt2M;
-};
 
 const FormProduct = (props: Props) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
-
+  const [caterory, setCategory] = useState([]);
   const handleChangeImage = (e: any) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -53,7 +32,8 @@ const FormProduct = (props: Props) => {
   };
   const onFinish = async (value: any) => {
     if (imageUrl) {
-      await create({ ...value, images: imageUrl });
+      // await create({ ...value, images: imageUrl });
+      console.log({ ...value, images: imageUrl });
     } else {
       message.error("Please await images !!");
     }
@@ -68,10 +48,16 @@ const FormProduct = (props: Props) => {
       setLoading(false);
       setImageUrl(data.url);
     } catch (err: any) {
-      console.log(err);
       message.error(JSON.stringify(err.message));
     }
   };
+  useEffect(() => {
+    const fetchCate = async () => {
+      const { data } = await axios.get("http://localhost:3001/category");
+      setCategory(data);
+    };
+    fetchCate();
+  }, []);
   return (
     <div>
       <div className={styles.header}>
@@ -103,7 +89,7 @@ const FormProduct = (props: Props) => {
                     accept="image/jpg,image/png,image/jpg"
                     defaultValue={imageUrl}
                   />
-                  {(imageUrl || loading) ? (
+                  {imageUrl || loading ? (
                     <img src={imageUrl} alt="" className={styles.img_prev} />
                   ) : (
                     <>
@@ -154,12 +140,12 @@ const FormProduct = (props: Props) => {
                   ]}
                   className={styles.w50}
                 >
-                  <InputNumber style={{ width: '100%' }}/>
+                  <InputNumber style={{ width: "100%" }} />
                 </Form.Item>
                 <Form.Item
                   name="saleOffPrice"
                   label="Giá khuyến mãi"
-                  // dependencies={['originalPrice']}
+                  dependencies={["originalPrice"]}
                   rules={[
                     {
                       required: true,
@@ -167,35 +153,32 @@ const FormProduct = (props: Props) => {
                     },
                     ({ getFieldValue }) => ({
                       validator(_, value) {
-                        if (!value   || getFieldValue('originalPrice') > value) {
+                        if (!value || getFieldValue("originalPrice") > value) {
                           return Promise.resolve();
                         }
-                        return Promise.reject(new Error('Giá sale phải nhỏ hơn giá gốc!'));
+                        return Promise.reject(
+                          new Error("Giá sale phải nhỏ hơn giá gốc!")
+                        );
                       },
                     }),
                   ]}
                   className={styles.w50}
                 >
-                  <InputNumber style={{ width: '100%' }}/>
+                  <InputNumber style={{ width: "100%" }} />
                 </Form.Item>
               </div>
               <Form.Item
-                name="category"
+                name="cateID"
                 rules={[
                   { required: true, message: "Trường này không được để trống" },
                 ]}
               >
-                <Select
-                  // defaultValue="lucy"
-                  style={{ width: 120 }}
-                  // onChange={handleChange}
-                >
-                  <Select.Option value="jack">Jack</Select.Option>
-                  <Select.Option value="lucy">Lucy</Select.Option>
-                  <Select.Option value="disabled" disabled>
-                    Disabled
-                  </Select.Option>
-                  <Select.Option value="Yiminghe">yiminghe</Select.Option>
+                <Select style={{ width: 120 }}>
+                  {caterory.map((item: any) => (
+                    <Select.Option value={item.id} key={item.id}>
+                      {item.name}
+                    </Select.Option>
+                  ))}
                 </Select>
               </Form.Item>
               <Form.Item

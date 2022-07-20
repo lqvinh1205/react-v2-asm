@@ -4,24 +4,38 @@ import styles from "./Products.module.css";
 import addIcon from "../../../assets/addIcon.svg";
 import { Select, Switch, Table } from "antd";
 import { get } from "../../../api/products";
+import axios from "axios";
 type Props = {};
 const { Option } = Select;
 
 const Products = (props: Props) => {
   const [products, setProducts] = useState([]);
+  const [productsFilter, setProductsFilter] = useState([]);
+  const [category, setCategory] = useState([]);
   const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await get();
       setProducts(data);
+      setProductsFilter(data);
       setIsloading(false);
     };
+    const fetchCate = async () => {
+      const { data } = await axios.get("http://localhost:3001/category");
+      setCategory(data);
+    };
     fetchData();
+    fetchCate();
   }, []);
 
-  const onGenderChange = (e: any) => {
-    console.log(e);
+  const onGenderChange = (cateID: any) => {
+    if (cateID) {
+      const data = products.filter((item: any) => item.cateID === cateID);
+      setProductsFilter(data);
+    } else {
+      setProductsFilter(products);
+    }
   };
   const checked = (e: boolean) => {
     console.log(e);
@@ -31,6 +45,7 @@ const Products = (props: Props) => {
       title: "#",
       dataIndex: "id",
       width: "5%",
+      key: "id",
     },
     {
       title: "Tên sản phẩm",
@@ -60,25 +75,23 @@ const Products = (props: Props) => {
       // 	</>
       //   ),
     },
-   
+
     {
       title: "Feature",
       key: "feature",
       dataIndex: "feature",
-		width: "30%",
-
+      width: "30%",
     },
-	{
-		title: "Ẩn/hiện",
-		dataIndex: "name",
-		key: "name",
-		width: "10%",
-		render: () => <Switch onChange={checked} />,
-	  },
+    {
+      title: "Ẩn/hiện",
+      key: "an",
+      width: "10%",
+      render: () => <Switch onChange={checked} />,
+    },
     {
       title: "Action",
-		width: "15%",
-
+      width: "15%",
+      key: "idasa",
       render: () => <span>Delete</span>,
     },
   ];
@@ -102,14 +115,22 @@ const Products = (props: Props) => {
             allowClear
             className={styles.filter_select}
           >
-            <Option value="male">male</Option>
-            <Option value="female">female</Option>
-            <Option value="other">other</Option>
+            <Option value="">Tất cả</Option>
+            {category.map((item: any) => (
+              <Option value={item.id} key={item.id}>
+                {item.name}
+              </Option>
+            ))}
           </Select>
         </div>
       </div>
       <div className={styles.table_products}>
-        <Table columns={columns} dataSource={products} loading={isLoading}/>
+        <Table
+          columns={columns}
+          dataSource={productsFilter}
+          loading={isLoading}
+          rowKey="id"
+        />
       </div>
     </div>
   );

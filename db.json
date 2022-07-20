@@ -1,5 +1,23 @@
 {
   "users": [],
+  "category": [
+    {
+      "id": 1,
+      "name": "Điện thoại"
+    },
+    {
+      "id": 2,
+      "name": "Máy tính bảng"
+    },
+    {
+      "id": 3,
+      "name": "Laptop"
+    },
+    {
+      "id": 4,
+      "name": "Âm thanh"
+    }
+  ],
   "products": [
     {
       "name": "Apple iPhone 13 Pro Max",
@@ -7,6 +25,7 @@
       "saleOffPrice": 12312321312,
       "feature": "Apple iPhone 13 Pro Max",
       "description": "Apple iPhone 13 Pro Max",
+      "cateID": 1,
       "id": 1
     },
     {
@@ -15,7 +34,8 @@
       "saleOffPrice": 27390000,
       "feature": "Màn hình Super Retina XDR 6.7 inch với ProMotion cho cảm giác nhanh nhạy hơn3\nChế độ Điện Ảnh làm tăng thêm độ sâu trường ảnh nông và tự động thay đổi tiêu cự trong video\nHệ thống camera chuyên nghiệp Telephoto, Wide và Ultra Wide 12MP; LiDAR Scanner; phạm vi thu phóng quang học 6x; chụp ảnh macro; Phong Cách Nhiếp Ảnh, video ProRes, HDR thông minh thế hệ 4, chế độ Ban Đêm, Apple ProRAW, khả năng quay video HDR Dolby Vision 4K",
       "description": "Cần có gói cước dữ liệu. Mạng 5G chỉ khả dụng ở một số thị trường và được cung cấp qua một số nhà mạng. Tốc độ có thể thay đổi tùy địa điểm và nhà mạng. Để biết thông tin về hỗ trợ mạng 5G, vui lòng liên hệ nhà mạng và truy cập apple.com/iphone/cellular.\n\n2Thời lượng pin khác nhau tùy theo cách sử dụng và cấu hình. Truy cập apple.com/batteries để biết thêm thông tin.\n\n",
-      "id": 2
+      "id": 2,
+      "cateID": 2
     },
     {
       "name": "Apple iPhone 13 Pro Max",
@@ -23,7 +43,8 @@
       "saleOffPrice": 27390000,
       "feature": "Màn hình Super Retina XDR 6.7 inch với ProMotion cho cảm giác nhanh nhạy hơn3\nChế độ Điện Ảnh làm tăng thêm độ sâu trường ảnh nông và tự động thay đổi tiêu cự trong video\nHệ thống camera chuyên nghiệp Telephoto, Wide và Ultra Wide 12MP; LiDAR Scanner; phạm vi thu phóng quang học 6x; chụp ảnh macro; Phong Cách Nhiếp Ảnh, video ProRes, HDR thông minh thế hệ 4, chế độ Ban Đêm, Apple ProRAW, khả năng quay video HDR Dolby Vision 4K",
       "description": "Cần có gói cước dữ liệu. Mạng 5G chỉ khả dụng ở một số thị trường và được cung cấp qua một số nhà mạng. Tốc độ có thể thay đổi tùy địa điểm và nhà mạng. Để biết thông tin về hỗ trợ mạng 5G, vui lòng liên hệ nhà mạng và truy cập apple.com/iphone/cellular.\n\n2Thời lượng pin khác nhau tùy theo cách sử dụng và cấu hình. Truy cập apple.com/batteries để biết thêm thông tin.\n\n",
-      "id": 3
+      "id": 3,
+      "cateID": 1
     },
     {
       "name": "Apple iPad Air (4th Gen) Wi-Fi, 2020",
@@ -31,7 +52,8 @@
       "saleOffPrice": 14870000,
       "feature": "Màn hình Liquid Retina 10.9 inch tuyệt đẹp với True Tone và dải màu rộng P31\nChip A14 Bionic với Neural Engine\nXác thực bảo mật với Touch ID",
       "description": "Pad Air hoàn toàn mới. Linh hoạt hơn bao giờ hết. Màn hình Liquid Retina 10.9 inch tuyệt đẹp với dải màu rộng cho bạn trải nghiệm thị giác vô cùng sống động và chi tiết khi xem ảnh hay video cũng như khi chơi game trên thiết bị.1 Chip A14 Bionic tích hợp công nghệ Neural Engine nổi bật với hiệu năng vận hành mạnh mẽ và các tính năng máy học cao cấp, hỗ trợ tối đa tác vụ biên tập video 4K, soạn bài thuyết trình đẹp mắt hay thiết kế mô hình 3D - mọi tác vụ đều thật dễ dàng. Thiết bị giờ đã hỗ trợ Magic Keyboard và Apple Pencil (thế hệ thứ 2),2 Touch ID nhanh nhạy, dễ sử dụng, bảo mật cao, camera sau 12MP và camera FaceTime HD 7MP, cổng kết nối USB-C hỗ trợ sạc và phụ kiện, thời lượng pin bền bỉ cả ngày,3 công nghệ Wi-Fi 6 và LTE tốc độ cao.4 Với iPad Air trong tay, bạn đã có đủ sức mạnh để hiện thực hóa mọi ý tưởng của bản thân",
-      "id": 4
+      "id": 4,
+      "cateID": 3
     },
     {
       "name": "Apple Watch Series 3 GPS Sport Band (Viền Nhôm, Dây Cao Su)",
@@ -39,257 +61,8 @@
       "saleOffPrice": 21213213,
       "feature": "Apple Watch Series 3 GPS Sport Band (Viền Nhôm, Dây Cao Su)",
       "description": "Apple Watch Series 3 GPS Sport Band (Viền Nhôm, Dây Cao Su)",
-      "id": 5
-    },
-    {
-      "images": "C:\\fakepath\\anhhtus-logo 2 (2).png",
-      "description": "sadsasd",
-      "name": "asdasd",
-      "originalPrice": "asdasd",
-      "saleOffPrice": "adsasd",
-      "category": "jack",
-      "feature": "asasd",
-      "imageUrl": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658221406/anhhtus/ksbwedmg7muheb2hdafu.png",
-      "id": 6
-    },
-    {
-      "images": "C:\\fakepath\\anhhtus-logo 2 (2).png",
-      "description": "sadasd",
-      "name": "aa",
-      "originalPrice": "aa",
-      "saleOffPrice": "aa",
-      "category": "jack",
-      "feature": "aaa",
-      "imageUrl": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658221906/anhhtus/gbr9qideka4drpab2gmu.png",
-      "id": 7
-    },
-    {
-      "description": "dasd",
-      "name": "asads",
-      "originalPrice": "asdas",
-      "saleOffPrice": "asdasd",
-      "category": "lucy",
-      "feature": "asdasd",
-      "id": 8
-    },
-    {
-      "images": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658221981/anhhtus/rw8ubnnh9sy97dwwxkvs.png",
-      "description": "dasd",
-      "name": "asads",
-      "originalPrice": "asdas",
-      "saleOffPrice": "asdasd",
-      "category": "lucy",
-      "feature": "asdasd",
-      "id": 9
-    },
-    {
-      "images": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658222092/anhhtus/wu6lamikpwxugt7jkzb5.png",
-      "description": "c",
-      "name": "cc",
-      "originalPrice": "cc",
-      "saleOffPrice": "cc",
-      "category": "lucy",
-      "feature": "cc",
-      "id": 10
-    },
-    {
-      "images": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658222092/anhhtus/wu6lamikpwxugt7jkzb5.png",
-      "description": "c",
-      "name": "cc",
-      "originalPrice": "cc",
-      "saleOffPrice": "cc",
-      "category": "lucy",
-      "feature": "cc",
-      "id": 11
-    },
-    {
-      "images": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658222593/anhhtus/xhxy82hkt3bylqi2lrpz.png",
-      "description": "asas",
-      "name": "asas",
-      "originalPrice": "asas",
-      "saleOffPrice": "as",
-      "category": "lucy",
-      "feature": "as",
-      "id": 12
-    },
-    {
-      "id": 13
-    },
-    {
-      "images": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658222717/anhhtus/sclb3aemyexesiqgrafk.png",
-      "description": "w",
-      "name": "q",
-      "originalPrice": "q",
-      "saleOffPrice": "q",
-      "category": "jack",
-      "feature": "q",
-      "id": 14
-    },
-    {
-      "images": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658222717/anhhtus/sclb3aemyexesiqgrafk.png",
-      "description": "w",
-      "name": "q",
-      "originalPrice": "q",
-      "saleOffPrice": "q",
-      "category": "jack",
-      "feature": "q",
-      "id": 15
-    },
-    {
-      "images": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658222717/anhhtus/sclb3aemyexesiqgrafk.png",
-      "description": "w",
-      "name": "q",
-      "originalPrice": "q",
-      "saleOffPrice": "q",
-      "category": "jack",
-      "feature": "q",
-      "id": 16
-    },
-    {
-      "id": 17
-    },
-    {
-      "id": 18
-    },
-    {
-      "images": {
-        "asset_id": "e98295bb53c12d6a10f3eb3e05f817ae",
-        "public_id": "anhhtus/jnuwgqnuxp0wphfqacjo",
-        "version": 1658223115,
-        "version_id": "37988a55d739ebb17a7ee12839137d6c",
-        "signature": "080a81ac733f540a5a934a76af540ca9d302fc4d",
-        "width": 195,
-        "height": 171,
-        "format": "png",
-        "resource_type": "image",
-        "created_at": "2022-07-19T09:31:55Z",
-        "tags": [],
-        "bytes": 11568,
-        "type": "upload",
-        "etag": "61e863a8cb014018e272ab9b0574173d",
-        "placeholder": false,
-        "url": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658223115/anhhtus/jnuwgqnuxp0wphfqacjo.png",
-        "secure_url": "https://res.cloudinary.com/dv3vzmogk/image/upload/v1658223115/anhhtus/jnuwgqnuxp0wphfqacjo.png",
-        "folder": "anhhtus",
-        "access_mode": "public",
-        "api_key": "132795416711217"
-      },
-      "description": "asdasd",
-      "name": "asdasd",
-      "originalPrice": "asdasd",
-      "saleOffPrice": "asdasd",
-      "category": "jack",
-      "feature": "asdasd",
-      "id": 19
-    },
-    {
-      "images": {
-        "asset_id": "e98295bb53c12d6a10f3eb3e05f817ae",
-        "public_id": "anhhtus/jnuwgqnuxp0wphfqacjo",
-        "version": 1658223115,
-        "version_id": "37988a55d739ebb17a7ee12839137d6c",
-        "signature": "080a81ac733f540a5a934a76af540ca9d302fc4d",
-        "width": 195,
-        "height": 171,
-        "format": "png",
-        "resource_type": "image",
-        "created_at": "2022-07-19T09:31:55Z",
-        "tags": [],
-        "bytes": 11568,
-        "type": "upload",
-        "etag": "61e863a8cb014018e272ab9b0574173d",
-        "placeholder": false,
-        "url": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658223115/anhhtus/jnuwgqnuxp0wphfqacjo.png",
-        "secure_url": "https://res.cloudinary.com/dv3vzmogk/image/upload/v1658223115/anhhtus/jnuwgqnuxp0wphfqacjo.png",
-        "folder": "anhhtus",
-        "access_mode": "public",
-        "api_key": "132795416711217"
-      },
-      "description": "asdasd",
-      "name": "asdasd",
-      "originalPrice": "asdasd",
-      "saleOffPrice": "asdasd",
-      "category": "jack",
-      "feature": "asdasd",
-      "id": 20
-    },
-    {
-      "id": 21
-    },
-    {
-      "images": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658223191/anhhtus/cjxq6ln1eh4bxkmbigzi.png",
-      "description": "asdasd",
-      "name": "asdas",
-      "originalPrice": "adsasd",
-      "saleOffPrice": "asd",
-      "category": "jack",
-      "feature": "asdasd",
-      "id": 22
-    },
-    {
-      "images": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658223191/anhhtus/cjxq6ln1eh4bxkmbigzi.png",
-      "description": "asdasd",
-      "name": "asdas",
-      "originalPrice": "adsasd",
-      "saleOffPrice": "asd",
-      "category": "jack",
-      "feature": "asdasd",
-      "id": 23
-    },
-    {
-      "images": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658223191/anhhtus/cjxq6ln1eh4bxkmbigzi.png",
-      "description": "asdasd upadte",
-      "name": "asdas",
-      "originalPrice": "adsasd",
-      "saleOffPrice": "asd",
-      "category": "jack",
-      "feature": "asdasd",
-      "id": 24
-    },
-    {
-      "images": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658223191/anhhtus/cjxq6ln1eh4bxkmbigzi.png",
-      "description": "asdasd upadteaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      "name": "asdas",
-      "originalPrice": "adsasd",
-      "saleOffPrice": "asd",
-      "category": "jack",
-      "feature": "asdasd",
-      "id": 25
-    },
-    {
-      "id": 26
-    },
-    {
-      "id": 27
-    },
-    {
-      "id": 28
-    },
-    {
-      "images": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658223568/anhhtus/dbvb8subwdwdrc8fipsu.png",
-      "description": "asdas",
-      "name": "sadas",
-      "originalPrice": "adssd",
-      "saleOffPrice": "asdads",
-      "category": "jack",
-      "feature": "asdasd",
-      "id": 29
-    },
-    {
-      "id": 30
-    },
-    {
-      "id": 31
-    },
-    {
-      "images": "http://res.cloudinary.com/dv3vzmogk/image/upload/v1658225328/anhhtus/rwhyhqkrrgekojb4x3j6.png",
-      "description": "sqw",
-      "name": "qqw",
-      "originalPrice": "qwqw",
-      "saleOffPrice": "qwqwqw",
-      "category": "jack",
-      "feature": "qwqw",
-      "id": 32
+      "id": 5,
+      "cateID": 4
     }
   ]
 }
