@@ -16,6 +16,7 @@ import InputCustom from "../../../../components/admin/InputCustom";
 import axios from "axios";
 import { create, read, update } from "../../../../api/products";
 import { useNavigate, useParams } from "react-router-dom";
+import Upload, { RcFile, UploadProps } from "antd/lib/upload";
 type Props = {};
 
 const FormProduct = (props: Props) => {
@@ -23,18 +24,25 @@ const FormProduct = (props: Props) => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
+  const [imageUrl, setImageUrl] = useState<string>("");
   const [caterory, setCategory] = useState([]);
   const [product, setProduct] = useState<any>({});
   const handleChangeImage = (e: any) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      uploadImage(reader.result as string);
-    };
+    if (file) {
+      if (file.size > 2097152) {
+        return message.error("File không vượt quá 2MB");
+      } else {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          return uploadImage(reader.result as string);
+        };
+      }
+    }
   };
   const onFinish = (value: any) => {
+    if (!imageUrl) return message.error("Ảnh không được trống");
     Modal.confirm({
       content: "Bạn có chắc muốn thêm",
       onOk: async () => {
@@ -102,15 +110,7 @@ const FormProduct = (props: Props) => {
         <div className={styles.content}>
           <div className={styles.left}>
             <div className={styles.upload}>
-              <Form.Item
-                name="images"
-                rules={[
-                  {
-                    required: true,
-                    message: "Trường này không được để trống!",
-                  },
-                ]}
-              >
+              <Form.Item name="images">
                 <label className={styles.upload_btn}>
                   <input
                     type="file"
@@ -134,6 +134,17 @@ const FormProduct = (props: Props) => {
                   {loading && <Spin size="large" />}
                 </label>
               </Form.Item>
+              {/* <Form.Item
+                name="images"
+                rules={[
+                  {
+                    required: true,
+                    message: "Trường ảnh không được trống",
+                  },
+                ]}
+              >
+                <input type="text" defaultValue={imageUrl} />
+              </Form.Item> */}
             </div>
             <Form.Item
               name="description"
