@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Products.module.css";
 import addIcon from "../../../assets/addIcon.svg";
-import { Select, Switch, Table } from "antd";
-import { get } from "../../../api/products";
+import { message, Modal, Select, Switch, Table } from "antd";
+import { changeStatus, get } from "../../../api/products";
 import axios from "axios";
+import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineEdit } from "react-icons/ai";
+
 type Props = {};
 const { Option } = Select;
 
@@ -13,14 +16,13 @@ const Products = (props: Props) => {
   const [productsFilter, setProductsFilter] = useState([]);
   const [category, setCategory] = useState([]);
   const [isLoading, setIsloading] = useState(true);
-
+  const fetchData = async () => {
+    const { data } = await get();
+    setProducts(data);
+    setProductsFilter(data);
+    setIsloading(false);
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await get();
-      setProducts(data);
-      setProductsFilter(data);
-      setIsloading(false);
-    };
     const fetchCate = async () => {
       const { data } = await axios.get("http://localhost:3001/category");
       setCategory(data);
@@ -37,11 +39,10 @@ const Products = (props: Props) => {
       setProductsFilter(products);
     }
   };
-  const checked = (e: boolean) => {
-    console.log(e);
-  };
-  const removeProduct = async (id: any) => {
-    console.log(id);
+  const checked = async (record: any) => {
+    await changeStatus(record);
+    message.success("Thay đổi trạng thái thành công!")
+    fetchData();
   };
   const columns = [
     {
@@ -83,26 +84,30 @@ const Products = (props: Props) => {
       title: "Feature",
       key: "feature",
       dataIndex: "feature",
-      width: "30%",
+      width: "40%",
     },
     {
       title: "Ẩn/hiện",
-      key: "an",
+      dataIndex: "status",
       width: "10%",
-      render: () => <Switch onChange={checked} />,
+      render: (_: boolean, record: any) => (
+        <Switch checked={_} onChange={() => checked(record)} />
+      ),
     },
     {
       title: "Action",
-      width: "15%",
+      width: "5%",
       dataIndex: "id",
       key: "id",
+
       render: (id: any) => (
-        <>
+        <div className={styles.group_btn}>
           <Link to={`${id}/edit`}>
-            <button>Edit</button>
+            <button className={styles.btn_edit}>
+              <AiOutlineEdit />
+            </button>
           </Link>
-          <button onClick={removeProduct}>Delete</button>
-        </>
+        </div>
       ),
     },
   ];

@@ -33,3 +33,14 @@
 .filter_select {
 	width: 300px;
 }
+.btn_delete, .btn_edit {
+	border: none;
+	background: none;
+	cursor: pointer;
+	font-size: 25px;
+}
+.group_btn {
+	display: flex;
+	gap: 10px;
+	justify-content: flex-end;
+}

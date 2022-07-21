@@ -18,7 +18,7 @@ export const update = (data: any) => {
   return instance.patch(url, data);
 };
 
-export const renove = (id: any) => {
-  const url = `products/${id}`;
-  return instance.delete(url);
+export const changeStatus = (product: any) => {
+  const url = `products/${product.id}`;
+  return instance.patch(url, {status: !product.status});
 };

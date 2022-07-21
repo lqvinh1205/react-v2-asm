@@ -181,18 +181,12 @@ const FormProduct = (props: Props) => {
                   label="Giá khuyến mãi"
                   dependencies={["originalPrice"]}
                   rules={[
-                    {
-                      required: true,
-                      message: "Trường này không được để trống!",
-                    },
                     ({ getFieldValue }) => ({
                       validator(_, value) {
-                        if (!value || getFieldValue("originalPrice") > value) {
-                          return Promise.resolve();
-                        }
-                        return Promise.reject(
-                          new Error("Giá sale phải nhỏ hơn giá gốc!")
-                        );
+                        const price = getFieldValue("originalPrice");
+                        return price && value < price
+                          ? Promise.resolve()
+                          : Promise.reject("Giá sale phải nhỏ hơn giá gốc!");
                       },
                     }),
                   ]}
